@@ -4,13 +4,15 @@
 class EngineMain
 {
 public:
-	EngineMain();
+	EngineMain(int width, int height, char *title);
 	~EngineMain();
-	void init(int width, int height, char *title);
+	void init();
 	void cleanUp();
 private:
 	EngineMain operator=(const EngineMain& rhs);
 	EngineMain(const EngineMain& rhs);
+
+	void mainLoop();
 
 public:
 

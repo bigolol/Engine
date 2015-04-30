@@ -1,8 +1,9 @@
 #include "engineMain.h"
 
 
-EngineMain::EngineMain() 
+EngineMain::EngineMain(int width, int height, char *title) : m_graphics(width, height, title)
 {
+
 }
 
 
@@ -10,18 +11,38 @@ EngineMain::~EngineMain()
 {
 }
 
-void EngineMain::init(int width, int height, char *title)
+void EngineMain::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	m_graphics = GraphicsClass(width, height, title);
+	
 	if (!m_graphics.setUp())
 	{
 		cleanUp();
 	}
+	mainLoop();
 }
 
 void EngineMain::cleanUp()
 {
 	m_graphics.cleanUp();
 	SDL_Quit();
+}
+
+
+void EngineMain::mainLoop()
+{
+	bool running = true;
+	SDL_Event event;
+	while (running)
+	{
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+			{
+				running = false;
+			}
+		}
+		m_graphics.render();
+	}
+	cleanUp();
 }

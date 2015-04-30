@@ -33,11 +33,15 @@ bool GraphicsClass::setUp()
 		std::cout << "Error: couldn't init glew: " << glewGetErrorString(glewInitResult) << std::endl;
 		return false;
 	}
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	m_shaderHandler = ShaderHandler();
 	return true;
 }
 
 void GraphicsClass::cleanUp()
 {
+	m_shaderHandler.cleanUp();
 	if (m_context != NULL)
 		SDL_GL_DeleteContext(m_context);
 	if(m_pWindow != nullptr)
@@ -46,5 +50,6 @@ void GraphicsClass::cleanUp()
 
 void GraphicsClass::render()
 {
-
+	glClear(GL_COLOR_BUFFER_BIT);
+	SDL_GL_SwapWindow(m_pWindow);
 }
