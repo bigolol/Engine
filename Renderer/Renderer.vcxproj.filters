@@ -24,9 +24,15 @@
     <ClCompile Include="shaderHandler.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="engineMain.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shaderHandler.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="engineMain.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
