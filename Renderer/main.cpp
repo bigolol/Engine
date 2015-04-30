@@ -2,6 +2,9 @@
 #include <SDL2\SDL.h>
 #include <GL\glew.h>
 #include "shaderHandler.h"
+#include <glm\glm.hpp>
+#include <glm\gtc\matrix_transform.hpp>
+#include <glm\gtc\type_ptr.hpp>
 int main(int argc, char **argv)
 {
 	std::cout << "I will be your debug window" << std::endl;
@@ -65,6 +68,12 @@ int main(int argc, char **argv)
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+
+	glm::mat4 view = glm::lookAt(
+		glm::vec3(0.0, 2.0, 4.0),   // eye
+		glm::vec3(0.0, 0.0, 0.0),   // direction
+		glm::vec3(0.0, 1.0, 0.0));  // up
+	glm::mat4 projection = glm::perspective(45.0f, 800.0f / 600.0f, 0.1f, 100.0f);
 	//----------------mainLoop
 	bool running = true;
 	SDL_Event event;
@@ -82,6 +91,11 @@ int main(int argc, char **argv)
 		}
 		glClear(GL_COLOR_BUFFER_BIT);
 		glUseProgram(program);
+		GLint viewLoc = glGetUniformLocation(program, "viewMatrix");
+		GLint projLoc = glGetUniformLocation(program, "perspectiveMatrix");
+
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view)); 
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 		glBindVertexArray(vaoHandle);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glUseProgram(0);
