@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 	SDL_Event event;
 
 	ShaderHandler handler;
-	handler.loadAndCompileShader("../Resources/shaders/simple.vs", GL_VERTEX_SHADER);
+	GLuint program = handler.createVertAndFragShaderProg("simple", "simple");
 	while (running)
 	{
 		while (SDL_PollEvent(&event))

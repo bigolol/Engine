@@ -4,19 +4,20 @@
 #include <iostream>
 #include <fstream>	
 #include <errno.h>
-
+#include <vector>
 class ShaderHandler
 {
 public:
 	ShaderHandler();
 	virtual ~ShaderHandler();
-	GLuint createVertAndFragShaderProg(const std::string& pathToVertShader, const std::string& pathToFragShader);
-	GLuint loadAndCompileShader(const std::string& pathToShader, const GLenum shaderType);
-	void checkForGLErrors();
+	GLuint createVertAndFragShaderProg(const std::string& vertShaderName, const std::string& fragShaderName);
+	void cleanUp();
 private:
-
+	GLuint loadAndCompileShader(const std::string& pathToShader, const GLenum shaderType) const;
+	bool checkForGLErrors() const;
 public:
 
 private:
+	std::vector<GLuint> m_vPrograms;
 };
 
