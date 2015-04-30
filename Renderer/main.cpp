@@ -26,8 +26,46 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
+	//----------------setUp
+	GLfloat verts[] = {
+		-.5f, -.5f, 0.0f,
+		.5f, -.5f, 0.0f,
+		0.0f, .5f, 0.0f
+	};
+	GLfloat colors[] = {
+		1.0f, 1.0f, .5f,
+		.8f, .5f, .5f,
+		.3f, .5f, .7f
+	};
+	GLuint vboHandles[2];
+	glGenBuffers(2, vboHandles);
+	GLuint positionBufferHandle = vboHandles[0];
+	GLuint colorBufferHandle = vboHandles[1];
+
+	glBindBuffer(GL_ARRAY_BUFFER, positionBufferHandle);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verts[0]) * 3 * 3, verts, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ARRAY_BUFFER, colorBufferHandle);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(colors[0]) * 3 * 3, colors, GL_STATIC_DRAW);
+
+	GLuint vaoHandle;
+	glGenVertexArrays(1, &vaoHandle);
+	glBindVertexArray(vaoHandle);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+
+	glBindBuffer(GL_ARRAY_BUFFER, positionBufferHandle);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)NULL);
+
+	glBindBuffer(GL_ARRAY_BUFFER, colorBufferHandle);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)NULL);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	//----------------mainLoop
 	bool running = true;
 	SDL_Event event;
 
@@ -43,6 +81,8 @@ int main(int argc, char **argv)
 			}
 		}
 		glClear(GL_COLOR_BUFFER_BIT);
+		glBindVertexArray(vaoHandle);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 		SDL_GL_SwapWindow(window);
 	}
 
