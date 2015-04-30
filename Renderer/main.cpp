@@ -81,8 +81,10 @@ int main(int argc, char **argv)
 			}
 		}
 		glClear(GL_COLOR_BUFFER_BIT);
+		glUseProgram(program);
 		glBindVertexArray(vaoHandle);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glUseProgram(0);
 		SDL_GL_SwapWindow(window);
 	}
 
