@@ -1,11 +1,12 @@
 #pragma once
+#include "GraphicsClass.h"
 #include <SDL2\SDL.h>
 class EngineMain
 {
 public:
-	EngineMain(int width, int height, char *title);
+	EngineMain();
 	~EngineMain();
-	void init();
+	void init(int width, int height, char *title);
 	void cleanUp();
 private:
 	EngineMain operator=(const EngineMain& rhs);
@@ -14,9 +15,6 @@ private:
 public:
 
 private:
-	int m_iWidth;
-	int m_iHeight;
-	const char *m_sTitle;
-	SDL_Window *m_window;
+	GraphicsClass m_graphics;
 };
 

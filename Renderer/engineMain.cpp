@@ -1,7 +1,7 @@
 #include "engineMain.h"
 
 
-EngineMain::EngineMain(int width, int height, char *title) : m_iHeight(height), m_iWidth(width), m_sTitle(title)
+EngineMain::EngineMain() 
 {
 }
 
@@ -10,13 +10,18 @@ EngineMain::~EngineMain()
 {
 }
 
-void EngineMain::init()
+void EngineMain::init(int width, int height, char *title)
 {
-	m_window = SDL_CreateWindow(m_sTitle, SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED, m_iWidth, m_iHeight, SDL_WINDOW_OPENGL;
+	SDL_Init(SDL_INIT_EVERYTHING);
+	m_graphics = GraphicsClass(width, height, title);
+	if (!m_graphics.setUp())
+	{
+		cleanUp();
+	}
 }
 
 void EngineMain::cleanUp()
 {
-	SDL_DestroyWindow(m_window);
+	m_graphics.cleanUp();
+	SDL_Quit();
 }

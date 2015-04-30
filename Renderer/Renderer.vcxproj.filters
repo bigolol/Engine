@@ -27,12 +27,18 @@
     <ClCompile Include="engineMain.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="GraphicsClass.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shaderHandler.h">
+    <ClInclude Include="engineMain.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="engineMain.h">
+    <ClInclude Include="GraphicsClass.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="shaderHandler.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

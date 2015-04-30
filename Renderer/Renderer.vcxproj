@@ -82,11 +82,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engineMain.cpp" />
+    <ClCompile Include="GraphicsClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shaderHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engineMain.h" />
+    <ClInclude Include="GraphicsClass.h" />
     <ClInclude Include="shaderHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
