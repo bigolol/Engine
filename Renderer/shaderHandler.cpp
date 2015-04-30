@@ -30,9 +30,21 @@ GLuint ShaderHandler::loadAndCompileShader(const std::string& pathToShader, cons
 			shaderCode.append(line);
 		}
 	}
-
+	const char *shaderCodeGL = shaderCode.c_str();
 	GLuint shaderObject = glCreateShader(shaderType);
-
+	glShaderSource(shaderObject, 1, &shaderCodeGL, NULL);
+	glCompileShader(shaderObject);
+	checkForGLErrors();
+	
 	return shaderObject;
+}
 
+void ShaderHandler::checkForGLErrors()
+{
+	GLenum glErr = glGetError();
+	while (glErr != GL_NO_ERROR)
+	{
+		std::cout << "GLError: " << glewGetErrorString(glErr);
+		glErr = glGetError();
+	}
 }
