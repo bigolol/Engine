@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2\SDL.h>
 #include <GL\glew.h>
+#include "shaderHandler.h"
 int main(int argc, char **argv)
 {
 	std::cout << "I will be your debug window" << std::endl;
@@ -16,6 +17,9 @@ int main(int argc, char **argv)
 
 	bool running = true;
 	SDL_Event event;
+
+	ShaderHandler handler;
+	handler.loadAndCompileShader("../Resources/shaders/simple.vs", GL_VERTEX_SHADER);
 	while (running)
 	{
 		while (SDL_PollEvent(&event))
