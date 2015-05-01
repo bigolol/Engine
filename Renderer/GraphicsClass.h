@@ -27,6 +27,5 @@ private:
 	SDL_GLContext m_context;
 	ShaderHandler m_shaderHandler;
 	std::vector<Mesh*> m_meshVector;
-	GLuint m_program;
 };
 

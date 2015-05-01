@@ -82,18 +82,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engineMain.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="RenderAble.cpp" />
     <ClCompile Include="shaderHandler.cpp" />
+    <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engineMain.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsClass.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="RenderAble.h" />
     <ClInclude Include="shaderHandler.h" />
+    <ClInclude Include="vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

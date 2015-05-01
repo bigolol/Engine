@@ -35,8 +35,28 @@ bool GraphicsClass::setUp()
 	}
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	m_program = m_shaderHandler.createVertAndFragShaderProg("simple", "simple");
+
 	m_shaderHandler = ShaderHandler();
+
+	Vertex positions[] = {
+		Vertex(glm::vec3(-.5f, -.5f, 0.0f)),
+		Vertex(glm::vec3(.5f, -.5f, 0.0f)),
+		Vertex(glm::vec3(-.5f, .5f, 0.0f)),
+		Vertex(glm::vec3(0.5f, .5f, 0.0f))
+	};
+	GLushort elements[] = {
+		0, 1, 2,
+		1, 2, 3
+	};
+	for (int i = 0; i < 4; i++)
+	{
+		positions[i].addColorData(glm::vec3(1.0f, 0.0f, 0.0f));
+	}
+	Mesh *mesh = new Mesh(positions, 4);
+	mesh->initBufferFromData();
+	mesh->bindElementArray(elements, 3 * 2);
+	mesh->setProgram(m_shaderHandler.createVertAndFragShaderProg("simple", "simple"));
+	addMesh(mesh);
 	return true;
 }
 
@@ -56,9 +76,9 @@ void GraphicsClass::render()
 	glClear(GL_COLOR_BUFFER_BIT);
 	for (int i = 0; i < m_meshVector.size(); ++i)
 	{
-		glUseProgram(m_program);
+		glUseProgram(m_meshVector[i]->getProgram());
 		glBindVertexArray(m_meshVector[i]->getVAOHandle());
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLE_STRIP, m_meshVector[i]->getNumElements(), GL_UNSIGNED_SHORT, NULL);
 		glBindVertexArray(0);
 		glUseProgram(0);
 	}

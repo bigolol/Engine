@@ -2,25 +2,30 @@
 #include <glm\glm.hpp>
 #include <GL\glew.h>
 #include <glm\gtc\type_ptr.hpp>
+#include "vertex.h"
 class Mesh
 {
 public:
-	Mesh(glm::vec3 *vertices, int numVerts);
+	Mesh(Vertex *vertices, int numVerts);
 	~Mesh();
 	void initBufferFromData();
 	void cleanUp();
 	GLuint getVAOHandle() const;
+	GLuint getProgram() const;
+	void setProgram(const GLuint program);
 	int getNumVerts() const;
+	void bindElementArray(GLushort *element, int numElements);
+	int getNumElements();
 private:
+
 public:
 
 private:
-	glm::vec3 *m_verticesPos;
-	glm::vec3 *m_verticesColor;
-	glm::vec3 *m_verticesNor;
-	glm::vec2 *m_vecticesTexCoords;
+	Vertex *m_verts;
+	int m_iNumElements;
 	int m_iNumVerts;
-	GLuint m_vertexArrayObj;
+	GLuint m_program;
+	GLuint m_vertexArrayObj, m_vertexBufferHandle, m_vertexElementHandle;
 	
 };
 
