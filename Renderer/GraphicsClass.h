@@ -6,6 +6,7 @@
 #include "shaderHandler.h"
 #include <vector>
 #include "Mesh.h"
+#include "GameObject.h"
 class GraphicsClass
 {
 public:
@@ -14,7 +15,7 @@ public:
 	bool setUp();
 	void cleanUp();
 	void render();
-	void addMesh(Mesh *mesh);
+	void addRenderable(RenderAble *obj);
 private:
 	
 public:
@@ -26,6 +27,6 @@ private:
 	SDL_Window *m_pWindow;
 	SDL_GLContext m_context;
 	ShaderHandler m_shaderHandler;
-	std::vector<Mesh*> m_meshVector;
+	std::vector<RenderAble*> m_renderVector;
 };
 

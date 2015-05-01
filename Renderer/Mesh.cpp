@@ -75,13 +75,3 @@ int Mesh::getNumElements()
 {
 	return m_iNumElements;
 }
-
-GLuint Mesh::getProgram() const
-{
-	return m_program;
-}
-
-void Mesh::setProgram(const GLuint program)
-{
-	m_program = program;
-}

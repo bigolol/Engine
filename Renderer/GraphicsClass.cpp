@@ -55,14 +55,18 @@ bool GraphicsClass::setUp()
 	Mesh *mesh = new Mesh(positions, 4);
 	mesh->initBufferFromData();
 	mesh->bindElementArray(elements, 3 * 2);
-	mesh->setProgram(m_shaderHandler.createVertAndFragShaderProg("simple", "simple"));
-	addMesh(mesh);
+	GameObject *object = new GameObject(mesh);
+	object->setProgram(m_shaderHandler.createVertAndFragShaderProg("simple", "simple"));
+	addRenderable(object);
 	return true;
 }
 
 void GraphicsClass::cleanUp()
 {
-	
+	for (int i = 0; i < m_renderVector.size(); ++i)
+	{
+		m_renderVector[i]->cleanUp();
+	}
 	m_shaderHandler.cleanUp();
 	if (m_context != NULL)
 		SDL_GL_DeleteContext(m_context);
@@ -74,18 +78,14 @@ void GraphicsClass::cleanUp()
 void GraphicsClass::render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	for (int i = 0; i < m_meshVector.size(); ++i)
+	for (int i = 0; i < m_renderVector.size(); ++i)
 	{
-		glUseProgram(m_meshVector[i]->getProgram());
-		glBindVertexArray(m_meshVector[i]->getVAOHandle());
-		glDrawElements(GL_TRIANGLE_STRIP, m_meshVector[i]->getNumElements(), GL_UNSIGNED_SHORT, NULL);
-		glBindVertexArray(0);
-		glUseProgram(0);
+		m_renderVector[i]->render();
 	}
 	SDL_GL_SwapWindow(m_pWindow);
 }
 
-void GraphicsClass::addMesh(Mesh *mesh)
+void GraphicsClass::addRenderable(RenderAble *obj)
 {
-	m_meshVector.push_back(mesh);
+	m_renderVector.push_back(obj);
 }

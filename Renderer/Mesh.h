@@ -11,8 +11,6 @@ public:
 	void initBufferFromData();
 	void cleanUp();
 	GLuint getVAOHandle() const;
-	GLuint getProgram() const;
-	void setProgram(const GLuint program);
 	int getNumVerts() const;
 	void bindElementArray(GLushort *element, int numElements);
 	int getNumElements();
@@ -24,7 +22,7 @@ private:
 	Vertex *m_verts;
 	int m_iNumElements;
 	int m_iNumVerts;
-	GLuint m_program;
+	
 	GLuint m_vertexArrayObj, m_vertexBufferHandle, m_vertexElementHandle;
 	
 };
