@@ -24,7 +24,8 @@ void GameObject::render(Camera *camera)
 	glUniformMatrix4fv(matLoc, 1, GL_FALSE, glm::value_ptr(camera->getViewAndProjMatrix()));
 
 	glBindVertexArray(m_pMesh->getVAOHandle());
-	glDrawElements(GL_TRIANGLE_STRIP, m_pMesh->getNumElements(), GL_UNSIGNED_SHORT, 0);
+	//glDrawElements(GL_TRIANGLE_STRIP, m_pMesh->getNumElements(), GL_UNSIGNED_SHORT, 0);
+	glDrawArrays(GL_TRIANGLES, 0, m_pMesh->getNumVerts());
 	glBindVertexArray(0);
 	glUseProgram(0);
 }

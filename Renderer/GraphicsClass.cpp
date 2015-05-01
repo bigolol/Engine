@@ -39,23 +39,11 @@ bool GraphicsClass::setUp()
 
 	m_shaderHandler = ShaderHandler();
 
-	Vertex positions[] = {
-		Vertex(glm::vec3(-.5f, -.5f, 0.0f)),
-		Vertex(glm::vec3(.5f, -.5f, 0.0f)),
-		Vertex(glm::vec3(-.5f, .5f, 0.0f)),
-		Vertex(glm::vec3(0.5f, .5f, 0.0f))
-	};
-	GLushort elements[] = {
-		0, 1, 2,
-		1, 2, 3
-	};
-	for (int i = 0; i < 4; i++)
-	{
-		positions[i].addColorData(glm::vec3(1.0f, 0.0f, 0.0f));
-	}
-	Mesh *mesh = new Mesh(positions, 4);
+
+	std::vector<Vertex> box = m_importer.importObj("box2");
+	Mesh *mesh = new Mesh(box.data(), box.size());
 	mesh->initBufferFromData();
-	mesh->bindElementArray(elements, 3 * 2);
+	//mesh->bindElementArray(elements, 3 * 2);
 	GameObject *object = new GameObject(mesh);
 	object->setProgram(m_shaderHandler.createVertAndFragShaderProg("simple", "simple"));
 	addRenderable(object);

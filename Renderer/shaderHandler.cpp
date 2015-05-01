@@ -13,9 +13,10 @@ ShaderHandler::~ShaderHandler()
 GLuint ShaderHandler::loadAndCompileShader(const std::string& pathToShader, const GLenum shaderType) const
 {
 	std::cout << "Compiling: " << pathToShader << std::endl;
-	char errorString[1024];
+	
 	std::ifstream shaderFileStream;
 	shaderFileStream.open(pathToShader);
+	char errorString[1024];
 	if (errno != 0)
 	{
 		strerror_s(errorString, errno);

@@ -1,6 +1,7 @@
 #pragma once
 #include "GraphicsClass.h"
 #include <SDL2\SDL.h>
+#include "ObjectImporter.h"
 class EngineMain
 {
 public:

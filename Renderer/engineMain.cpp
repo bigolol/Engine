@@ -3,7 +3,6 @@
 
 EngineMain::EngineMain(const int width, const int height, const char const *title) : m_graphics(width, height, title)
 {
-
 }
 
 
@@ -19,7 +18,6 @@ void EngineMain::init()
 	{
 		cleanUp();
 	}
-	
 	
 	mainLoop();
 }

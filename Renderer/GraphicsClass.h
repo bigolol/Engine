@@ -8,6 +8,7 @@
 #include "Mesh.h"
 #include "GameObject.h"
 #include "Camera.h"
+#include "ObjectImporter.h"
 class GraphicsClass
 {
 public:
@@ -30,5 +31,6 @@ private:
 	ShaderHandler m_shaderHandler;
 	std::vector<RenderAble*> m_renderVector;
 	Camera *m_pCurrentCamera;
+	ObjectImporter m_importer;
 };
 
