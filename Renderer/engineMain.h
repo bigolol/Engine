@@ -4,7 +4,7 @@
 class EngineMain
 {
 public:
-	EngineMain(int width, int height, char *title);
+	EngineMain(const int width, const int height, const char const *title);
 	~EngineMain();
 	void init();
 	void cleanUp();

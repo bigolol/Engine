@@ -1,7 +1,7 @@
 #include "engineMain.h"
 
 
-EngineMain::EngineMain(int width, int height, char *title) : m_graphics(width, height, title)
+EngineMain::EngineMain(const int width, const int height, const char const *title) : m_graphics(width, height, title)
 {
 
 }
@@ -19,6 +19,16 @@ void EngineMain::init()
 	{
 		cleanUp();
 	}
+	glm::vec3 positions[] = {
+		glm::vec3(-.5, -.5, 0.0),
+
+		glm::vec3(.5, -.5, 0.0),
+
+		glm::vec3(0.0, .5, 0.0)
+	};
+	Mesh *mesh = new Mesh(positions, 3);
+	mesh->initBufferFromData();
+	m_graphics.addMesh(mesh);
 	mainLoop();
 }
 

@@ -1,7 +1,7 @@
 #include "GraphicsClass.h"
 
 
-GraphicsClass::GraphicsClass(int width, int height, char *title) : m_iWidth(width), m_iHeight(height), m_cTitle(title)
+GraphicsClass::GraphicsClass(const int width, const int height, const char const *title) : m_iWidth(width), m_iHeight(height), m_cTitle(title)
 {
 	m_pWindow = nullptr;
 	m_context = NULL;
@@ -35,12 +35,14 @@ bool GraphicsClass::setUp()
 	}
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
+	m_program = m_shaderHandler.createVertAndFragShaderProg("simple", "simple");
 	m_shaderHandler = ShaderHandler();
 	return true;
 }
 
 void GraphicsClass::cleanUp()
 {
+	
 	m_shaderHandler.cleanUp();
 	if (m_context != NULL)
 		SDL_GL_DeleteContext(m_context);
@@ -48,8 +50,22 @@ void GraphicsClass::cleanUp()
 		SDL_DestroyWindow(m_pWindow);
 }
 
+
 void GraphicsClass::render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	for (int i = 0; i < m_meshVector.size(); ++i)
+	{
+		glUseProgram(m_program);
+		glBindVertexArray(m_meshVector[i]->getVAOHandle());
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glBindVertexArray(0);
+		glUseProgram(0);
+	}
 	SDL_GL_SwapWindow(m_pWindow);
+}
+
+void GraphicsClass::addMesh(Mesh *mesh)
+{
+	m_meshVector.push_back(mesh);
 }

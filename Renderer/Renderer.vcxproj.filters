@@ -30,6 +30,12 @@
     <ClCompile Include="GraphicsClass.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="RenderAble.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engineMain.h">
@@ -39,6 +45,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="shaderHandler.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderAble.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
