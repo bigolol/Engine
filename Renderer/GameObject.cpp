@@ -3,6 +3,7 @@
 
 GameObject::GameObject(Mesh *mesh) : m_pMesh(mesh)
 {
+	glm::vec3 rotationVec(0.0f, 1.0f, 0.0f);
 }
 
 

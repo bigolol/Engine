@@ -21,6 +21,6 @@ public:
 private:
 	GLuint m_program;
 	Mesh *m_pMesh;
-
+	glm::mat4 m_transformMatrix;
 };
 
