@@ -88,8 +88,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ObjectImporter.cpp" />
-    <ClCompile Include="RenderAble.cpp" />
     <ClCompile Include="shaderHandler.cpp" />
+    <ClCompile Include="updateHandler.cpp" />
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +101,8 @@
     <ClInclude Include="ObjectImporter.h" />
     <ClInclude Include="RenderAble.h" />
     <ClInclude Include="shaderHandler.h" />
+    <ClInclude Include="UpdateAble.h" />
+    <ClInclude Include="updateHandler.h" />
     <ClInclude Include="vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

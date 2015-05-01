@@ -40,14 +40,8 @@ bool GraphicsClass::setUp()
 	m_shaderHandler = ShaderHandler();
 
 
-	std::vector<Vertex> box = m_importer.importObj("box2");
-	Mesh *mesh = new Mesh(box.data(), box.size());
-	mesh->initBufferFromData();
-	//mesh->bindElementArray(elements, 3 * 2);
-	GameObject *object = new GameObject(mesh);
-	object->setProgram(m_shaderHandler.createVertAndFragShaderProg("simple", "simple"));
-	addRenderable(object);
-	m_pCurrentCamera = new Camera(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
+	
+	m_pCurrentCamera = new Camera(glm::vec3(3.0f, 3.0f, 3.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
 	return true;
 }
 

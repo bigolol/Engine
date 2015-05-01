@@ -30,9 +30,6 @@
     <ClCompile Include="GraphicsClass.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="RenderAble.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="ObjectImporter.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="updateHandler.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,6 +75,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="ObjectImporter.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateAble.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="updateHandler.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

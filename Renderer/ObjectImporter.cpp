@@ -115,6 +115,7 @@ std::vector<Vertex> ObjectImporter::importObj(std::string objFileName)
 		}		
 
 	}
+	std::cout << "succesfully imported" << std::endl;
 	return vertexVec;
 
 }

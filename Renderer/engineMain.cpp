@@ -18,7 +18,13 @@ void EngineMain::init()
 	{
 		cleanUp();
 	}
-	
+	std::vector<Vertex> vertices = m_importer.importObj("box2");
+	Mesh *mesh = new Mesh(vertices.data(),vertices.size());
+	mesh->initBufferFromData();
+	GameObject *cube = new GameObject(mesh);
+	cube->setProgram(m_handler.createVertAndFragShaderProg("simple", "simple"));
+	m_updater.addUpdateable(cube);
+	m_graphics.addRenderable(cube);
 	mainLoop();
 }
 
@@ -33,6 +39,9 @@ void EngineMain::mainLoop()
 {
 	bool running = true;
 	SDL_Event event;
+	unsigned int now = SDL_GetTicks();
+	unsigned int before = SDL_GetTicks();
+	unsigned int delta = 0;
 	while (running)
 	{
 		while (SDL_PollEvent(&event))
@@ -42,7 +51,16 @@ void EngineMain::mainLoop()
 				running = false;
 			}
 		}
-		m_graphics.render();
+		now = SDL_GetTicks();
+		delta = now - before;
+		while (delta < 1000 / 60)
+		{
+			m_graphics.render();
+			now = SDL_GetTicks();
+			delta = now - before;
+		}
+		m_updater.update(delta);
+		before = now;
 	}
 	cleanUp();
 }

@@ -4,12 +4,11 @@
 class RenderAble
 {
 public:
-	RenderAble();
-	~RenderAble();
+	RenderAble(){};
+	virtual ~RenderAble(){};
 	virtual void render(Camera *camera) = 0;
 	virtual void cleanUp() = 0;
 private:
-
 public:
 
 private:
