@@ -7,6 +7,7 @@
 #include <vector>
 #include "Mesh.h"
 #include "GameObject.h"
+#include "Camera.h"
 class GraphicsClass
 {
 public:
@@ -28,5 +29,6 @@ private:
 	SDL_GLContext m_context;
 	ShaderHandler m_shaderHandler;
 	std::vector<RenderAble*> m_renderVector;
+	Camera *m_pCurrentCamera;
 };
 

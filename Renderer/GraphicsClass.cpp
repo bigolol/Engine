@@ -5,6 +5,7 @@ GraphicsClass::GraphicsClass(const int width, const int height, const char const
 {
 	m_pWindow = nullptr;
 	m_context = NULL;
+	m_pCurrentCamera = nullptr;
 }
 
 
@@ -58,11 +59,16 @@ bool GraphicsClass::setUp()
 	GameObject *object = new GameObject(mesh);
 	object->setProgram(m_shaderHandler.createVertAndFragShaderProg("simple", "simple"));
 	addRenderable(object);
+	m_pCurrentCamera = new Camera(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
 	return true;
 }
 
 void GraphicsClass::cleanUp()
 {
+	if (m_pCurrentCamera != nullptr)
+	{
+		delete &m_pCurrentCamera;
+	}
 	for (int i = 0; i < m_renderVector.size(); ++i)
 	{
 		m_renderVector[i]->cleanUp();
@@ -80,7 +86,7 @@ void GraphicsClass::render()
 	glClear(GL_COLOR_BUFFER_BIT);
 	for (int i = 0; i < m_renderVector.size(); ++i)
 	{
-		m_renderVector[i]->render();
+		m_renderVector[i]->render(m_pCurrentCamera);
 	}
 	SDL_GL_SwapWindow(m_pWindow);
 }

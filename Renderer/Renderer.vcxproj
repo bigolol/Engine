@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="engineMain.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="engineMain.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsClass.h" />
