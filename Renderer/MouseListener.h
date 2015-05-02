@@ -8,7 +8,7 @@ class MouseListener : public Communicator
 public:
 	MouseListener();
 	virtual ~MouseListener();
-	void registerMe(ListenerMouseData *listener);
+	void registerMe(Listener *listener);
 	void checkMouse();
 	void notifyAll();
 private:
@@ -16,7 +16,7 @@ private:
 public:
 
 private:
-	std::vector<ListenerMouseData*> m_listenerVec;
+	std::vector<Listener*> m_listenerVec;
 	int m_iX;
 	int m_iY;
 };

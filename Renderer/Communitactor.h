@@ -6,5 +6,5 @@ public:
 	Communicator(){};
 	virtual ~Communicator(){};
 	virtual void notifyAll() = 0;
-	virtual void registerMe(ListenerMouseData *listener) = 0;
+	virtual void registerMe(Listener *listener) = 0;
 };
