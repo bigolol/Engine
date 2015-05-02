@@ -20,6 +20,7 @@ public:
 	void render();
 	void getNotified(int x, int y);
 	void addRenderable(RenderAble *obj);
+	void setCamera(Camera *camera);
 private:
 	
 public:

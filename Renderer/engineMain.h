@@ -7,6 +7,7 @@
 #include "ObjectImporter.h"
 #include "shaderHandler.h"
 #include "MouseListener.h"
+#include "KeyListener.h"
 class EngineMain
 {
 public:
@@ -28,5 +29,6 @@ private:
 	ObjectImporter m_importer;
 	ShaderHandler m_handler;
 	MouseListener m_mouseListener;
+	KeyListener *m_keyListener;
 };
 

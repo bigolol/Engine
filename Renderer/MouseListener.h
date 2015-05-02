@@ -2,8 +2,7 @@
 #include "Listener.h"
 #include <SDL2\SDL.h>
 #include <vector>
-#include "Communitactor.h"
-class MouseListener : public Communicator
+class MouseListener
 {
 public:
 	MouseListener();

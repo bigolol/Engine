@@ -25,10 +25,35 @@ void Camera::updateViewMatrix()
 void Camera::setPosition(glm::vec3 newPos)
 {
 	m_position = newPos;
+}
+
+
+void Camera::getNotified(int x, int y)
+{
 
 }
-void Camera::updatePosition(float movementScalar)
+
+void Camera::move(bool directions[], float amount)
 {
-	m_position += glm::normalize(m_direction) * movementScalar;
+	//vorne
+	if (directions[0])
+	{
+		m_position += glm::normalize(m_direction) * amount;
+	}
+	//hinten
+	if (directions[1])
+	{
+		m_position -= glm::normalize(m_direction) * amount;
+	}
+	//rechts
+	if (directions[2])
+	{
+		m_position += glm::normalize(glm::cross(m_direction, glm::vec3(0.0f,1.0f, 0.0f))) * amount;
+	}
+	//links
+	if (directions[3])
+	{
+		m_position -= glm::normalize(glm::cross(m_direction, glm::vec3(0.0f, 1.0f, 0.0f))) * amount;
+	}
 	updateViewMatrix();
 }

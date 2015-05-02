@@ -1,15 +1,14 @@
 #pragma once
-#include "Listener.h"
-#include <vector>
+#include "Camera.h"
+#include "SDL2\SDL.h"
 class KeyListener
 {
 public:
-	KeyListener();
+	KeyListener(Camera *camera);
 	~KeyListener();
-	void registerMe(Listener *listener);
-	virtual void notifyAll();
-
+	void listenForKeys();
 private:
-	std::vector<Listener *> m_listenerVector;
+	Camera *m_camera;
+	const Uint8 *m_bIsPressed;
 };
 

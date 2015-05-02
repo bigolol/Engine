@@ -26,6 +26,9 @@ void EngineMain::init()
 	m_updater.addUpdateable(cube);
 	m_graphics.addRenderable(cube);
 	m_mouseListener.registerMe(&m_graphics);
+	Camera *camera = new Camera(glm::vec3(3.0f, 3.0f, 3.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
+	m_graphics.setCamera(camera);
+	m_keyListener = new KeyListener(camera);
 	mainLoop();
 }
 
@@ -51,8 +54,12 @@ void EngineMain::mainLoop()
 			{
 				running = false;
 			}
-			m_mouseListener.checkMouse();
+						
 		}
+
+		m_keyListener->listenForKeys();
+		m_mouseListener.checkMouse();
+
 		now = SDL_GetTicks();
 		delta = now - before;
 		while (delta < 1000 / 60)

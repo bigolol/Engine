@@ -1,7 +1,7 @@
 #include "KeyListener.h"
 
 
-KeyListener::KeyListener()
+KeyListener::KeyListener(Camera *camera) : m_camera(camera)
 {
 }
 
@@ -10,15 +10,14 @@ KeyListener::~KeyListener()
 {
 }
 
-void KeyListener::registerMe(Listener *listener)
+void KeyListener::listenForKeys()
 {
-	m_listenerVector.push_back(listener);
-}
-
-void KeyListener::notifyAll()
-{
-	for (int i = 0; i < m_listenerVector.size(); ++i)
-	{
-		m_listenerVector[i]->getNotified(1, 1);
-	}
+	m_bIsPressed = SDL_GetKeyboardState(NULL);
+	bool scanCodes[] = {
+		m_bIsPressed[SDL_SCANCODE_W],
+		m_bIsPressed[SDL_SCANCODE_S],
+		m_bIsPressed[SDL_SCANCODE_D],
+		m_bIsPressed[SDL_SCANCODE_A],
+	};
+	m_camera->move(scanCodes, .3);
 }
