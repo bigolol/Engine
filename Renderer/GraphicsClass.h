@@ -9,7 +9,8 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "ObjectImporter.h"
-class GraphicsClass
+#include "Listener.h"
+class GraphicsClass : public Listener
 {
 public:
 	GraphicsClass(const int width, const int height, const char const *title);
@@ -17,6 +18,7 @@ public:
 	bool setUp();
 	void cleanUp();
 	void render();
+	void getNotified(int x, int y);
 	void addRenderable(RenderAble *obj);
 private:
 	
@@ -32,5 +34,6 @@ private:
 	std::vector<RenderAble*> m_renderVector;
 	Camera *m_pCurrentCamera;
 	ObjectImporter m_importer;
+	glm::vec3 m_lightSource;
 };
 

@@ -18,13 +18,14 @@ void EngineMain::init()
 	{
 		cleanUp();
 	}
-	std::vector<Vertex> vertices = m_importer.importObj("box2");
+	std::vector<Vertex> vertices = m_importer.importObj("teapot");
 	Mesh *mesh = new Mesh(vertices.data(),vertices.size());
 	mesh->initBufferFromData();
 	GameObject *cube = new GameObject(mesh);
-	cube->setProgram(m_handler.createVertAndFragShaderProg("simple", "simple"));
+	cube->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
 	m_updater.addUpdateable(cube);
 	m_graphics.addRenderable(cube);
+	m_mouseListener.registerMe(&m_graphics);
 	mainLoop();
 }
 
@@ -50,6 +51,7 @@ void EngineMain::mainLoop()
 			{
 				running = false;
 			}
+			m_mouseListener.checkMouse();
 		}
 		now = SDL_GetTicks();
 		delta = now - before;

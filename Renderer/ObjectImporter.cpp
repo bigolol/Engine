@@ -30,6 +30,11 @@ std::vector<Vertex> ObjectImporter::importObj(std::string objFileName)
 	std::vector<glm::vec2> vertTextureVec;
 	std::vector<Vertex> vertexVec;
 	std::string currentLine;
+
+	float randR = ((float)rand() / (RAND_MAX));
+	float randG = ((float)rand() / (RAND_MAX));
+	float randB = ((float)rand() / (RAND_MAX));
+
 	while (!objFileStream.eof())
 	{
 		std::getline(objFileStream, currentLine);
@@ -108,7 +113,7 @@ std::vector<Vertex> ObjectImporter::importObj(std::string objFileName)
 					Vertex currentVertex(vertPosVec[vertInds[0] - 1]);
 					currentVertex.addTexData(vertTextureVec[vertInds[1] - 1]);
 					currentVertex.addNormalData(vertNormsVec[vertInds[2] - 1]);
-					currentVertex.addColorData(glm::vec3(.5f, .5f, .5f));
+					currentVertex.addColorData(glm::vec3(randR, randG, randB));
 					vertexVec.push_back(currentVertex);
 				}
 			}

@@ -34,14 +34,13 @@ bool GraphicsClass::setUp()
 		std::cout << "Error: couldn't init glew: " << glewGetErrorString(glewInitResult) << std::endl;
 		return false;
 	}
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
+	glEnable(GL_DEPTH_TEST);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	m_shaderHandler = ShaderHandler();
 
-
-	
 	m_pCurrentCamera = new Camera(glm::vec3(3.0f, 3.0f, 3.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
+	m_lightSource = glm::vec3(0.0f, 6.0f, 0.0f);
 	return true;
 }
 
@@ -65,10 +64,10 @@ void GraphicsClass::cleanUp()
 
 void GraphicsClass::render()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (int i = 0; i < m_renderVector.size(); ++i)
 	{
-		m_renderVector[i]->render(m_pCurrentCamera);
+		m_renderVector[i]->render(m_pCurrentCamera, m_lightSource);
 	}
 	SDL_GL_SwapWindow(m_pWindow);
 }
@@ -76,4 +75,9 @@ void GraphicsClass::render()
 void GraphicsClass::addRenderable(RenderAble *obj)
 {
 	m_renderVector.push_back(obj);
+}
+
+void GraphicsClass::getNotified(int x, int y)
+{
+
 }

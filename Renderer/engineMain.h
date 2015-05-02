@@ -6,6 +6,7 @@
 #include "Mesh.h"
 #include "ObjectImporter.h"
 #include "shaderHandler.h"
+#include "MouseListener.h"
 class EngineMain
 {
 public:
@@ -26,6 +27,6 @@ private:
 	UpdateHandler m_updater;
 	ObjectImporter m_importer;
 	ShaderHandler m_handler;
-
+	MouseListener m_mouseListener;
 };
 

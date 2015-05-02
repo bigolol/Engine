@@ -87,6 +87,7 @@
     <ClCompile Include="GraphicsClass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MouseListener.cpp" />
     <ClCompile Include="ObjectImporter.cpp" />
     <ClCompile Include="shaderHandler.cpp" />
     <ClCompile Include="updateHandler.cpp" />
@@ -97,13 +98,19 @@
     <ClInclude Include="engineMain.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsClass.h" />
+    <ClInclude Include="Listener.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MouseListener.h" />
     <ClInclude Include="ObjectImporter.h" />
     <ClInclude Include="RenderAble.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="shaderHandler.h" />
     <ClInclude Include="UpdateAble.h" />
     <ClInclude Include="updateHandler.h" />
     <ClInclude Include="vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Renderer.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
