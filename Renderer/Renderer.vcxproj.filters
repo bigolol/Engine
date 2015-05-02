@@ -51,6 +51,9 @@
     <ClCompile Include="MouseListener.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="KeyListener.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engineMain.h">
@@ -93,6 +96,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Listener.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyListener.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Communitactor.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

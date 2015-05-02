@@ -85,6 +85,7 @@
     <ClCompile Include="engineMain.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
+    <ClCompile Include="KeyListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MouseListener.cpp" />
@@ -95,9 +96,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Communitactor.h" />
     <ClInclude Include="engineMain.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsClass.h" />
+    <ClInclude Include="KeyListener.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MouseListener.h" />

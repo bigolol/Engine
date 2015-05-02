@@ -18,7 +18,7 @@ void EngineMain::init()
 	{
 		cleanUp();
 	}
-	std::vector<Vertex> vertices = m_importer.importObj("teapot");
+	std::vector<Vertex> vertices = m_importer.importObj("Torus2");
 	Mesh *mesh = new Mesh(vertices.data(),vertices.size());
 	mesh->initBufferFromData();
 	GameObject *cube = new GameObject(mesh);

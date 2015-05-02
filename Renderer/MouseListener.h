@@ -2,12 +2,13 @@
 #include "Listener.h"
 #include <SDL2\SDL.h>
 #include <vector>
-class MouseListener
+#include "Communitactor.h"
+class MouseListener : public Communicator
 {
 public:
 	MouseListener();
 	virtual ~MouseListener();
-	void registerMe(Listener *listener);
+	void registerMe(ListenerMouseData *listener);
 	void checkMouse();
 	void notifyAll();
 private:
@@ -15,7 +16,7 @@ private:
 public:
 
 private:
-	std::vector<Listener*> m_listenerVec;
+	std::vector<ListenerMouseData*> m_listenerVec;
 	int m_iX;
 	int m_iY;
 };
