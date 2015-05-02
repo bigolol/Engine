@@ -25,8 +25,9 @@ void EngineMain::init()
 	cube->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
 	m_updater.addUpdateable(cube);
 	m_graphics.addRenderable(cube);
+	Camera *camera = new Camera(glm::vec3(-3.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	m_mouseListener.registerMe(&m_graphics);
-	Camera *camera = new Camera(glm::vec3(3.0f, 3.0f, 3.0f), glm::vec3(-1.0f, -1.0f, -1.0f));
+	m_mouseListener.registerMe(camera);
 	m_graphics.setCamera(camera);
 	m_keyListener = new KeyListener(camera);
 	mainLoop();

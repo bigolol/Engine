@@ -22,6 +22,8 @@ private:
 	glm::vec3 m_direction;
 	glm::mat4 m_viewMatrix;
 	glm::mat4 m_projMatrix;
-	
+	float m_fRotationVert;
+	float m_fRotationHorizontal;
+	int m_iOldX, m_iOldY;
 };
 

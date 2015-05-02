@@ -10,6 +10,8 @@ public:
 	void registerMe(Listener *listener);
 	void checkMouse();
 	void notifyAll();
+	int getX() const;
+	int getY() const;
 private:
 	
 public:

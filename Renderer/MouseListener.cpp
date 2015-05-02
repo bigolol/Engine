@@ -3,6 +3,9 @@
 
 MouseListener::MouseListener()
 {
+	SDL_GetMouseState(&m_iX, &m_iY);
+	m_iX -= 400;
+	m_iY -= 300;
 }
 
 
@@ -19,7 +22,6 @@ void MouseListener::checkMouse()
 {
 	int newX, newY;
 	SDL_GetMouseState(&newX, &newY);
-	//transform so that 0 0 is in the middle of the screen
 	newX -= 400;
 	newY -= 300;
 	if (newX != m_iX || newY != m_iY)
@@ -28,6 +30,15 @@ void MouseListener::checkMouse()
 		m_iY = newY;
 		notifyAll();
 	}
+}
+
+int MouseListener::getX() const
+{
+	return m_iX;
+}
+int MouseListener::getY() const
+{
+	return m_iY;
 }
 
 void MouseListener::notifyAll()
