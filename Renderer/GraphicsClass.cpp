@@ -52,7 +52,7 @@ void GraphicsClass::cleanUp()
 {
 	if (m_pCurrentCamera != nullptr)
 	{
-		delete &m_pCurrentCamera;
+		m_pCurrentCamera->cleanUp();
 	}
 	for (int i = 0; i < m_renderVector.size(); ++i)
 	{

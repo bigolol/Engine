@@ -101,6 +101,9 @@
     <ClInclude Include="KeyListener.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="commandable.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Renderer.rc">

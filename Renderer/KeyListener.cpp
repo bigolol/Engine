@@ -13,11 +13,15 @@ KeyListener::~KeyListener()
 void KeyListener::listenForKeys()
 {
 	m_bIsPressed = SDL_GetKeyboardState(NULL);
-	bool scanCodes[] = {
-		m_bIsPressed[SDL_SCANCODE_W],
-		m_bIsPressed[SDL_SCANCODE_S],
-		m_bIsPressed[SDL_SCANCODE_D],
-		m_bIsPressed[SDL_SCANCODE_A],
-	};
-	m_camera->move(scanCodes, .3);
+
+	if (m_bIsPressed[SDL_SCANCODE_W])
+		m_camera->performAction(MOVE_FORWARD);
+	if (m_bIsPressed[SDL_SCANCODE_S])
+		m_camera->performAction(MOVE_BACKWARDS);
+	if (m_bIsPressed[SDL_SCANCODE_D])
+		m_camera->performAction(MOVE_RIGHT);
+	if (m_bIsPressed[SDL_SCANCODE_A])
+		m_camera->performAction(MOVE_LEFT);
+	if (m_bIsPressed[SDL_SCANCODE_SPACE])
+		m_camera->performAction(JUMP);
 }

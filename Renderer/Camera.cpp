@@ -9,7 +9,7 @@ m_iOldX(0), m_iOldY(0)
 	m_fRotationHorizontal = glm::degrees(glm::asin(m_direction.z / sqrt(m_direction.z * m_direction.z + m_direction.x * m_direction.x)));
 	updateViewMatrix();
 	m_projMatrix = glm::perspective(45.0f, 800.0f / 600.0f, .1f, 100.0f);
-	
+	m_fSpeed = .25f;
 }
 
 
@@ -32,7 +32,10 @@ void Camera::setPosition(glm::vec3 newPos)
 	m_position = newPos;
 }
 
-
+glm::vec3 Camera::getPosition()
+{
+	return m_position;
+}
 void Camera::getNotified(int x, int y)
 {
 	float xoffset = x - m_iOldX;
@@ -40,7 +43,7 @@ void Camera::getNotified(int x, int y)
 	m_iOldX = x;
 	m_iOldY = y;
 
-	float sensitivity = 0.1;
+	float sensitivity = 0.25;
 	xoffset *= sensitivity;
 	yoffset *= sensitivity;
 
@@ -61,27 +64,30 @@ void Camera::getNotified(int x, int y)
 	updateViewMatrix();
 }
 
-void Camera::move(bool directions[], float amount)
+void Camera::performAction(COMMANDS command)
 {
-	//vorne
-	if (directions[0])
+	switch (command)
 	{
-		m_position += glm::normalize(m_direction) * amount;
-	}
-	//hinten
-	if (directions[1])
-	{
-		m_position -= glm::normalize(m_direction) * amount;
-	}
-	//rechts
-	if (directions[2])
-	{
-		m_position += glm::normalize(glm::cross(m_direction, glm::vec3(0.0f,1.0f, 0.0f))) * amount;
-	}
-	//links
-	if (directions[3])
-	{
-		m_position -= glm::normalize(glm::cross(m_direction, glm::vec3(0.0f, 1.0f, 0.0f))) * amount;
+	case MOVE_FORWARD:
+		m_position += glm::normalize(m_direction) * m_fSpeed;
+		break;
+	case MOVE_BACKWARDS:
+		m_position -= glm::normalize(m_direction) * m_fSpeed;
+		break;
+	case MOVE_LEFT:
+		m_position -= glm::normalize(glm::cross(m_direction, glm::vec3(0.0f, 1.0f, 0.0f))) * m_fSpeed;
+		break;
+	case MOVE_RIGHT:
+		m_position += glm::normalize(glm::cross(m_direction, glm::vec3(0.0f, 1.0f, 0.0f))) * m_fSpeed;
+		break;
+	case JUMP:
+		m_position += glm::vec3(0.0f, 1.0f, 0.0f) * m_fSpeed;
+		break;
 	}
 	updateViewMatrix();
+}
+
+void Camera::cleanUp()
+{
+
 }

@@ -8,7 +8,7 @@
 class GameObject : public RenderAble, public Updateable
 {
 public:
-	GameObject(Mesh *mesh);
+	GameObject(Mesh *mesh, glm::vec3 position);
 	~GameObject();
 	void render(Camera *camera, glm::vec3 lightSource);
 	void cleanUp();
@@ -23,6 +23,7 @@ private:
 	Mesh *m_pMesh;
 	glm::mat4 m_transformMatrix;
 	glm::mat4 m_normalTransMatrix;
+	glm::vec3 m_position;
 	float m_fRotDegree;
 };
 

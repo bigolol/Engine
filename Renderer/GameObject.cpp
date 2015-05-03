@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(Mesh *mesh) : m_pMesh(mesh)
+GameObject::GameObject(Mesh *mesh, glm::vec3 position) : m_pMesh(mesh), m_position(position)
 {
 	m_transformMatrix = glm::mat4();
 	m_fRotDegree = 0;
@@ -25,13 +25,16 @@ void GameObject::render(Camera *camera, glm::vec3 lightSource)
 	glUniformMatrix4fv(matLoc, 1, GL_FALSE, glm::value_ptr(camera->getViewAndProjMatrix()));
 
 	GLint transLocation = glGetUniformLocation(m_program, "transformMatrix");
-	glUniformMatrix4fv(transLocation, 1, GL_FALSE, glm::value_ptr(m_transformMatrix));
+	glUniformMatrix4fv(transLocation, 1, GL_FALSE, glm::value_ptr(glm::translate(glm::mat4(), -m_position) * m_transformMatrix));
 
 	GLint normaltransLocation = glGetUniformLocation(m_program, "normalTransformMatrix");
 	glUniformMatrix4fv(normaltransLocation, 1, GL_FALSE, glm::value_ptr(m_normalTransMatrix));
 	
 	GLint lightLoc = glGetUniformLocation(m_program, "lightSource");
 	glUniform3fv(lightLoc, 1, glm::value_ptr(lightSource));
+
+	GLint camPos = glGetUniformLocation(m_program, "camPosition");
+	glUniform3fv(camPos, 1, glm::value_ptr(camera->getPosition()));
 
 	glBindVertexArray(m_pMesh->getVAOHandle());
 	//glDrawElements(GL_TRIANGLE_STRIP, m_pMesh->getNumElements(), GL_UNSIGNED_SHORT, 0);
@@ -47,6 +50,7 @@ void GameObject::setProgram(const GLuint program)
 
 void GameObject::update(float deltaTime)
 {
-	m_transformMatrix = glm::rotate(m_transformMatrix, deltaTime * .001f, glm::vec3(0.0f, 1.0f, 0.0f));
+	m_transformMatrix = glm::rotate(m_transformMatrix, deltaTime * .001f, glm::vec3(1.0f, 1.0f, 0.0f));
+	
 	m_normalTransMatrix = glm::transpose(glm::inverse(m_transformMatrix));
 }

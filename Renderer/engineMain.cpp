@@ -19,13 +19,30 @@ void EngineMain::init()
 		cleanUp();
 	}
 	std::vector<Vertex> vertices = m_importer.importObj("Torus2");
-	Mesh *mesh = new Mesh(vertices.data(),vertices.size());
-	mesh->initBufferFromData();
-	GameObject *cube = new GameObject(mesh);
-	cube->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
-	m_updater.addUpdateable(cube);
-	m_graphics.addRenderable(cube);
-	Camera *camera = new Camera(glm::vec3(-3.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	Mesh *torusmesh = new Mesh(vertices.data(),vertices.size());
+	torusmesh->initBufferFromData();
+	vertices = m_importer.importObj("teapot");
+	Mesh *teapotmesh = new Mesh(vertices.data(), vertices.size());
+	teapotmesh->initBufferFromData();
+	vertices = m_importer.importObj("box2");
+	Mesh *sphereMesh = new Mesh(vertices.data(), vertices.size());
+	sphereMesh->initBufferFromData();
+	GameObject *torus = new GameObject(torusmesh, glm::vec3(3.0f, -1.0f, 0.0f));
+	torus->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
+
+	GameObject *torus2 = new GameObject(sphereMesh, glm::vec3(5.0f, -1.0f, 6.0f));
+	torus2->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
+
+	GameObject *teapot = new GameObject(teapotmesh, glm::vec3(-3.0f, 1.0f, 3.0f));
+	teapot->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
+
+	m_updater.addUpdateable(torus);
+	m_graphics.addRenderable(torus);
+	m_updater.addUpdateable(torus2);
+	m_graphics.addRenderable(torus2);
+	m_updater.addUpdateable(teapot);
+	m_graphics.addRenderable(teapot);
+	Camera *camera = new Camera(glm::vec3(3.0f, 3.0f, 0.0f), glm::vec3(-1.0f, -1.0f, 0.0f));
 	m_mouseListener.registerMe(&m_graphics);
 	m_mouseListener.registerMe(camera);
 	m_graphics.setCamera(camera);

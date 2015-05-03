@@ -2,6 +2,7 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include "Listener.h"
+#include "commandable.h"
 class Camera : public Listener
 {
 public:
@@ -9,10 +10,11 @@ public:
 	~Camera();
 
 	glm::mat4 getViewAndProjMatrix() const;
+	glm::vec3 getPosition();
 	void setPosition(glm::vec3 newPos);
 	void getNotified(int x, int y);
-
-	void move(bool *directions, float amount);
+	void cleanUp();
+	void performAction(COMMANDS command);
 private:
 	void updateViewMatrix();
 public:
@@ -25,5 +27,6 @@ private:
 	float m_fRotationVert;
 	float m_fRotationHorizontal;
 	int m_iOldX, m_iOldY;
+	float m_fSpeed;
 };
 
