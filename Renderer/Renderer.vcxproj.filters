@@ -54,6 +54,9 @@
     <ClCompile Include="KeyListener.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engineMain.h">
@@ -102,6 +105,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="commandable.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

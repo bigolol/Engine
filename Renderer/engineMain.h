@@ -8,6 +8,7 @@
 #include "shaderHandler.h"
 #include "MouseListener.h"
 #include "KeyListener.h"
+#include "Terrain.h"
 class EngineMain
 {
 public:

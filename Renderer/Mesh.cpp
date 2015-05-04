@@ -75,3 +75,19 @@ int Mesh::getNumElements()
 {
 	return m_iNumElements;
 }
+
+
+Mesh *Mesh::createPlanarMesh(int width, int height, int numWidthSegs, int numHeightSegs)
+{
+	int numVertices = (numWidthSegs + 1) * (numHeightSegs + 1);
+	float widthSegLength = width / numWidthSegs;
+	float heightSegLEngth = height / numHeightSegs;
+	Vertex *verticesArray = new Vertex[numVertices];
+	for (int i = 0; i < numWidthSegs + 1; ++i)
+	{
+		for (int j = 0; j < numHeightSegs + 1; ++j)
+		{
+			verticesArray[i * numWidthSegs + j] = Vertex(glm::vec3(i * numWidthSegs * widthSegLength, 0.0f, j * heightSegLEngth));
+		}
+	}
+}

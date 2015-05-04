@@ -14,6 +14,7 @@ public:
 	int getNumVerts() const;
 	void bindElementArray(GLushort *element, int numElements);
 	int getNumElements();
+	Mesh *createPlanarMesh(int width, int height, int numWidthSegs, int numHeightSegs);
 private:
 
 public:

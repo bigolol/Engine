@@ -27,6 +27,16 @@ void EngineMain::init()
 	vertices = m_importer.importObj("box2");
 	Mesh *sphereMesh = new Mesh(vertices.data(), vertices.size());
 	sphereMesh->initBufferFromData();
+	vertices = m_importer.importObj("plane");
+	Mesh *planeMesh = new Mesh(vertices.data(), vertices.size());
+	planeMesh->initBufferFromData();
+
+	GameObject *terrain= new GameObject(planeMesh, glm::vec3(0.0f, -2.0f, 0.0f));
+	terrain->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
+
+	m_graphics.addRenderable(terrain);
+
+
 	GameObject *torus = new GameObject(torusmesh, glm::vec3(3.0f, -1.0f, 0.0f));
 	torus->setProgram(m_handler.createVertAndFragShaderProg("toon", "simple"));
 
